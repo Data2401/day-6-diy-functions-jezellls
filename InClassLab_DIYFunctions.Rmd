@@ -4,61 +4,89 @@ author: "Dr. Shoemaker"
 date: "DATA 2401"
 output: html_document
 ---
-**Note: Your exam will be in a similar format to this (RMarkdown File with Questions and Code chunks for your answers), so make sure you have the process for knitting to html working.** 
+
+**Note: Your exam will be in a similar format to this (RMarkdown File with Questions and Code chunks for your answers), so make sure you have the process for knitting to html working.**
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## In Class Activity 
-The questions from your notes today are below, please copy your answers them here! Then complete the two new tasks, and attempt the "hard mode" if you have time. 
+## In Class Activity
 
-1. Write your own function that takes the temperature in Fahrenheit as an argument and returns the Celcius equivalent. 
+The questions from your notes today are below, please copy your answers them here! Then complete the two new tasks, and attempt the "hard mode" if you have time.
+
+1.  Write your own function that takes the temperature in Fahrenheit as an argument and returns the Celcius equivalent.
+
+```{R}
+FtoC <- function(fahrenheit){
+  (fahrenheit - 32) * 5/9
+}
+FtoC(32)
+FtoC(212)
+```
+
+2.  Expand that function so that it takes a temperature in Fahrenheit and a distance in feet and returns **both** the temperature in Celcius and the distance in meters (you'll likely need to remember the `c()` function!)
+
+```{r}
+conversions <- function(fahrenheit, distance_f){
+  temp_c <- (fahrenheit - 32)*5/9
+  distance_m <- distance_f / 3.281
+  return (c(temp_c, distance_m))
+  }
+
+conversions(32,3)
+```
+
+3.  Write a function that prints out a statement of whether the number passed as an argument is positive, negative or 0.
 
 ```{R}
 
-
+posOrneg <- function(number){
+  if (number < 0 )
+    print("Number is a negative.")
+  else if (number > 0)
+    print("The number is positve.")
+  else  
+    print("The number is 0")
+}
+posOrneg(0)
+posOrneg(10)
+posOrneg(-3)
 ```
 
-2. Expand that function so that it takes a temperature in Fahrenheit and a distance in feet and returns **both** the temperature in Celcius and the distance in meters (you'll likely need to remember the `c()` function!)
-
+4.  Write a function that returns the absolute value of the number passed as an argument.
+    -   Don't use `abs()`. Use the flow from problem 1 and multiply by negative one as necessary.
 
 ```{r}
-
+absval <- function(num){
+  if (num > 0)
+    num
+  else 
+    num * -1
+}
+absval(-1)
+absval(-5)
+absval(7)
+absval(0)
 
 ```
 
+5.  Hard mode: add an error check to that function that prints out the string "Please pass a numerical value to this function" if the user passes the function a string.
+    -   There are functions that check and return T/F: `is.numeric()` or `is.character()` would be relevant here
 
-3. Write a function that prints out a statement of whether the number passed as an argument is positive, negative or 0. 
-
-```{R}
-
-
-```
-
-4. Write a function that returns the absolute value of the number passed as an argument.
-   + Don't use `abs()`. Use the flow from problem 1 and multiply by negative one as necessary. 
-   
 ```{r}
-
-
+absval <- function(num){
+  if (is.character(num))
+    print("Error")
+  else if (num > 0)
+    num
+  else
+    num * -1
+}
+absval("hello")
+absval(0)
+absval(-20)
+absval(12)
 ```
 
-5. Hard mode: add an error check to that function that prints out the string "Please pass a numerical value to this function" if the user passes the function a string. 
-   + There are functions that check and return T/F: `is.numeric()` or `is.character()` would be relevant here
-   
-```{r}
-
-
-
-```
-   
-   
-
-
-
-
-
-
-```
-
+\`\`\`
